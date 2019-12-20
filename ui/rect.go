@@ -1,8 +1,8 @@
 package ui
 
 type Rect struct {
-	x int
-	y int
-	w int
-	h int
+	x  int
+	y  int
+	x1 int
+	y1 int
 }

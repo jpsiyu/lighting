@@ -7,29 +7,33 @@ import (
 	"github.com/gizak/termui/v3/widgets"
 )
 
-type Price struct{}
+type Price struct {
+	rect *Rect
+}
 
-func NewPrice() *Price {
-	return &Price{}
+func NewPrice(rect *Rect) *Price {
+	return &Price{
+		rect: rect,
+	}
+}
+
+func sin(n int) []float64 {
+	ps := make([]float64, n)
+	for i := range ps {
+		ps[i] = 1 + math.Sin(float64(i)/5)
+	}
+	return ps
 }
 
 func (p *Price) Widget() *widgets.Plot {
-	sinData := (func() []float64 {
-		n := 220
-		ps := make([]float64, n)
-		for i := range ps {
-			ps[i] = 1 + math.Sin(float64(i)/5)
-		}
-		return ps
-	})()
-
-	lc := widgets.NewPlot()
-	lc.Title = "dot-marker Line Chart"
-	lc.Data = make([][]float64, 1)
-	lc.Data[0] = sinData
-	lc.SetRect(0, 15, 50, 25)
-	lc.AxesColor = ui.ColorWhite
-	lc.LineColors[0] = ui.ColorRed
-	lc.Marker = widgets.MarkerDot
-	return lc
+	sinData := sin(220)
+	pc := widgets.NewPlot()
+	pc.Title = "Price Chart"
+	pc.Data = make([][]float64, 1)
+	pc.Data[0] = sinData
+	pc.SetRect(p.rect.x, p.rect.y, p.rect.x1, p.rect.y1)
+	pc.AxesColor = ui.ColorWhite
+	pc.LineColors[0] = ui.ColorBlue
+	pc.Marker = widgets.MarkerDot
+	return pc
 }

@@ -12,7 +12,8 @@ func Run() {
 	}
 	defer ui.Close()
 
-	price := NewPrice()
+	priceRect := &Rect{x: 00, y: 0, x1: 80, y1: 20}
+	price := NewPrice(priceRect)
 
 	ui.Render(price.Widget())
 
