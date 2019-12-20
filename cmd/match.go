@@ -6,7 +6,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// matchCmd represents the match command
 var matchCmd = &cobra.Command{
 	Use:   "match",
 	Short: "start match system",
