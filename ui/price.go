@@ -32,8 +32,7 @@ func (p *Price) Widget() *widgets.Plot {
 	pc.Data = make([][]float64, 1)
 	pc.Data[0] = sinData
 	pc.SetRect(p.rect.x, p.rect.y, p.rect.x1, p.rect.y1)
-	pc.AxesColor = ui.ColorWhite
+	pc.AxesColor = ui.ColorCyan
 	pc.LineColors[0] = ui.ColorBlue
-	pc.Marker = widgets.MarkerDot
 	return pc
 }
