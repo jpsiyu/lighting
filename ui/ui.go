@@ -12,10 +12,13 @@ func Run() {
 	}
 	defer ui.Close()
 
-	priceRect := &Rect{x: 00, y: 0, x1: 80, y1: 20}
+	priceRect := &Rect{x: 0, y: 0, x1: 80, y1: 20}
 	price := NewPrice(priceRect)
 
-	ui.Render(price.Widget())
+	depthRect := &Rect{x: 0, y: 20, x1: 80, y1: 35}
+	depth := NewDepth(depthRect)
+
+	ui.Render(price.Widget(), depth.Widget())
 
 	uiEvents := ui.PollEvents()
 	for {
